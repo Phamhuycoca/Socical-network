@@ -32,6 +32,7 @@ const ListDanhMuc: React.FC = () => {
       const startIndex = (page - 1) * pageSize;
       const slicedData = fakeData.slice(startIndex, startIndex + pageSize);
       setData(slicedData); // 🛠 Fix: Không còn lỗi TypeScript
+      setTotal(slicedData.length);
       setLoading(false);
     }, 500);
   };
