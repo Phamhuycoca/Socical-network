@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { StyleProvider } from "@ant-design/cssinjs";
@@ -9,6 +10,7 @@ import NotFound from "./pages/NotFound.tsx";
 import PrivateRoute from "./routers/private.tsx";
 
 createRoot(document.getElementById("root")!).render(
+  <StrictMode>
     <StyleProvider layer>
       <ConfigProvider theme={{ cssVar: false, hashed: false }}>
         <AuthProvider>
@@ -48,4 +50,5 @@ createRoot(document.getElementById("root")!).render(
         </AuthProvider>
       </ConfigProvider>
     </StyleProvider>
+  </StrictMode>
 );

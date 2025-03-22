@@ -11,12 +11,12 @@ const NotFound: React.FC = () => {
   
   return (
     <Result
-      status="403"
-      title="403"
-      subTitle="Sorry, you are not authorized to access this page."
+      status="404"
+      title="404"
+      subTitle="Trang bạn truy cập không tồn tại."
       extra={
         <Button type="primary" onClick={handler}>
-          Back Home
+          Quay lại trang trước
         </Button>
       }
     />
