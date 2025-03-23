@@ -1,9 +1,10 @@
 import React from "react";
+import { IUpload } from "../../components/Upload";
 
 const ListHanhDong: React.FC = () => {
   return (
     <>
-      <h1>Hành động</h1>
+     <IUpload/>
     </>
   );
 };

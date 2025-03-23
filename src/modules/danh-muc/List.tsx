@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TableView from "../../components/TableView/TableView";
+import { Button, Row } from "antd";
+import { CommonButton, CreateButton, DeleteButton, EditButton, SaveButton } from "../../components/Button";
+import { PlusOutlined } from "@ant-design/icons";
 
-// Định nghĩa kiểu dữ liệu cho một người dùng
 interface User {
   id: number;
   name: string;
@@ -20,7 +22,7 @@ const generateFakeData = (totalRecords: number): User[] => {
 const ListDanhMuc: React.FC = () => {
   const [data, setData] = useState<User[]>([]); // 🛠 Fix: Định nghĩa kiểu dữ liệu cho state
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [pageSize, setPageSize] = useState<number>(10);
   const [total, setTotal] = useState<number>(50);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,11 +30,11 @@ const ListDanhMuc: React.FC = () => {
   const fetchData = (page: number, pageSize: number) => {
     setLoading(true);
     setTimeout(() => {
-      const fakeData = generateFakeData(total);
+      const fakeData = generateFakeData(50);
       const startIndex = (page - 1) * pageSize;
       const slicedData = fakeData.slice(startIndex, startIndex + pageSize);
-      setData(slicedData); // 🛠 Fix: Không còn lỗi TypeScript
-      setTotal(slicedData.length);
+      setData(slicedData);
+      setTotal(50);
       setLoading(false);
     }, 500);
   };
@@ -54,8 +56,17 @@ const ListDanhMuc: React.FC = () => {
 
   return (
     <div>
-      <h2>Danh sách người dùng</h2>
       <TableView
+        action={
+          <Row justify={'end'}>
+              <Button>Thêm mới</Button>
+              <EditButton/>
+              <CreateButton/>
+              <DeleteButton/>
+              <SaveButton/>
+              <CommonButton text="Button" icon={<PlusOutlined/>}/>
+          </Row>
+        }
         columns={columns}
         data={data}
         page={page}

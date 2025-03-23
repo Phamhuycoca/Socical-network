@@ -1,7 +1,12 @@
 import React from "react";
-import { Table, Pagination, Spin, Row } from "antd";
-import type { PaginationProps } from 'antd';
+import { Table, Pagination, Spin, Row, Col } from "antd";
+import type { PaginationProps } from "antd";
+import { Space } from "antd";
+import { Typography } from "antd";
+import { AutoComplete, Input } from "antd";
+const { Title } = Typography;
 interface TableViewProps {
+  title?: string;
   columns: any[]; // Cấu hình cột của bảng
   data: any[]; // Dữ liệu hiển thị từ API
   loading?: boolean; // Trạng thái loading
@@ -9,6 +14,8 @@ interface TableViewProps {
   pageSize: number; // Số dòng trên mỗi trang từ API
   total: number; // Tổng số bản ghi từ API
   pagination?: boolean;
+  searchKey?: boolean;
+  action?: React.ReactNode;
   onPageChange: (page: number, pageSize: number) => void; // Xử lý khi đổi trang
 }
 
@@ -21,15 +28,52 @@ const TableView: React.FC<TableViewProps> = ({
   total,
   pagination = true,
   onPageChange,
+  title = null,
+  searchKey = false,
+  action = null,
 }) => {
-    const showTotal: PaginationProps['showTotal'] = (total) => `Tổng ${total} bản ghi`;
+  const showTotal: PaginationProps["showTotal"] = (total) =>
+    `Tổng ${total} bản ghi`;
   return (
     <Spin spinning={loading}>
+      <Row>
+        {title != null && (
+          <Col span={12}>
+            <Space align="center" className="mt-2 mb-2">
+              <Title level={5}>{title}</Title>
+            </Space>
+          </Col>
+        )}
+        {searchKey && (
+          <Col span={12}>
+            <Row justify={"end"}>
+              <AutoComplete
+                popupMatchSelectWidth={252}
+                style={{ width: 300 }}
+                size="large"
+              >
+                <Input.Search
+                  size="large"
+                  placeholder="Nhập từ khóa tìm kiếm"
+                  enterButton
+                />
+              </AutoComplete>
+            </Row>
+          </Col>
+        )}
+      </Row>
+      {action && (
+        <>
+          {action}
+        </>
+      )}
+
       <Table
+        className={action === null || searchKey === false ? "mt-2 mb-2" : ""}
         columns={columns}
         dataSource={data}
         rowKey={(record) => record.id || record.key}
-        pagination={false} // Tắt pagination mặc định của Table
+        pagination={false}
       />
       <Row justify="end">
         {pagination && (
@@ -39,9 +83,9 @@ const TableView: React.FC<TableViewProps> = ({
             pageSize={pageSize}
             total={total}
             showSizeChanger
-            pageSizeOptions={["5", "10", "20", "50"]} // Các lựa chọn cho số bản ghi/trang
+            pageSizeOptions={["10", "20", "50", "100"]}
             onChange={onPageChange}
-            onShowSizeChange={onPageChange} // Cập nhật pageSize khi thay đổi
+            onShowSizeChange={onPageChange}
             className="mt-4"
           />
         )}

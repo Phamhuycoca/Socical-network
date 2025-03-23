@@ -23,8 +23,14 @@ const Admin: React.FC = () => {
   } = theme.useToken();
   const navigate = useNavigate();
   return (
-    <Layout>
-      <Sider  trigger={null} collapsible collapsed={collapsed} className="h-screen">
+    <Layout className="h-screen" >
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        className="h-screen"
+        width={256}
+      >
         <Image
           width={"100%"}
           height={50}
@@ -33,9 +39,9 @@ const Admin: React.FC = () => {
           src="https://res.cloudinary.com/drhdgw1xx/image/upload/v1706264627/gnio9s5elrbaq9fghyqp.png"
         />
         <Menu
-        style={{
-          height:"calc(100vh - 20px)",
-        }}
+          style={{
+            height: "calc(100vh - 20px)",
+          }}
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
@@ -46,7 +52,7 @@ const Admin: React.FC = () => {
             {
               key: "/admin/danh-muc",
               icon: <UserOutlined />,
-              label: "nav 1",
+              label: "nav 1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             },
             {
               key: "/admin/nguoi-dung",
@@ -64,6 +70,7 @@ const Admin: React.FC = () => {
       <Layout>
         <Header
           style={{
+            width:'auto',
             padding: 0,
             background: colorBgContainer,
             display: "flex",
@@ -81,7 +88,7 @@ const Admin: React.FC = () => {
         <Content
           style={{
             margin: "16px",
-            padding: 16,
+            padding: 8,
             minHeight: "calc(100vh - 64px)",
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
