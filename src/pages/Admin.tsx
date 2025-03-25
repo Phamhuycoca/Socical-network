@@ -20,13 +20,11 @@ import {
   List,
   Menu,
   Row,
-  Space,
   theme,
 } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 import type { MenuProps } from "antd";
 import { PageHeader } from "../components/PageHeader";
-import VirtualList from "rc-virtual-list";
 
 const items: MenuProps["items"] = [
   {
