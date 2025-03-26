@@ -1,4 +1,4 @@
-import { Button, Modal, Row, Space } from 'antd';
+import { Button, Modal, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
 

@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { routes } from "./routers/Router.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import PrivateRoute from "./routers/private.tsx";
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <StyleProvider layer>
