@@ -11,7 +11,7 @@ import { Avatar, Button, Col, Dropdown, Image, Layout, Menu, Row, theme } from '
 import { Outlet, useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import { PageHeader } from '../components/PageHeader';
-import { Notification } from '../components/Notification';
+import { Bell } from '../components/Bell';
 
 const items: MenuProps['items'] = [
     {
@@ -109,7 +109,7 @@ const Admin: React.FC = () => {
                             />
                         </Col>
                         <Col span={12} className="flex justify-end items-center">
-                            <Notification />
+                            <Bell />
 
                             <Dropdown menu={{ items }} trigger={['click']}>
                                 <Avatar
