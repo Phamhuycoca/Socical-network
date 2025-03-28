@@ -8,10 +8,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { routes } from "./routers/Router.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import PrivateRoute from "./routers/private.tsx";
+import { Provider } from 'react-redux';
+import { store } from './store/index.tsx';
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <StyleProvider layer>
       <ConfigProvider theme={{ cssVar: false, hashed: false }}>
+      <Provider store={store}>
         <AuthProvider>
           <Router>
             <Routes>
@@ -47,6 +50,7 @@ createRoot(document.getElementById("root")!).render(
             </Routes>
           </Router>
         </AuthProvider>
+        </Provider>
       </ConfigProvider>
     </StyleProvider>
   </StrictMode>

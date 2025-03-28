@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import storeAlert from './reducers/alert.slice'
 export const store = configureStore({
   reducer: {
+    alert:storeAlert
   },
 });
 

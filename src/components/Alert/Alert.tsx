@@ -1,33 +1,27 @@
 import { Button, Modal, Space } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setClose,  setResult } from '../../store/reducers/alert.slice';
 interface PropsAlert {
-    onChange?: (value: boolean) => void;
-    onChangeOpen?:(value: boolean) => void;
     message?: string;
-    open?: boolean;
 }
 
-export const Alert: React.FC<PropsAlert> = ({ onChange,onChangeOpen, message = 'Bạn có muốn xóa thông tin này?', open = false }) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    useEffect(() => {
-        setIsOpen(open);
-    }, [open]);
+export const Alert: React.FC<PropsAlert>= ({message='Bạn có muốn xóa thông tin này?'}) => {
+    const alert = useSelector((state: any) => state.alert);
+    const dispatch=useDispatch();
 
     const handleClose = () => {
-        onChange?.(false);
-        setIsOpen(false);
-        onChangeOpen?.(false);
+        dispatch(setClose())
+        dispatch(setResult(false));
     };
     const handleOk = () => {
-        onChange?.(true);
-        setIsOpen(false);
-        onChangeOpen?.(false);
+        dispatch(setClose())
+        dispatch(setResult(true))
     };
     return (
         <Modal
-            open={isOpen}
+            open={alert.open}
             onCancel={handleClose}
             title={
                 <Space>
